@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option go_package = "grpcserver";
+
+service FibonacciService {
+  rpc GetRange(GetRangeRequest) returns (GetRangeResponse) {}
+}
+
+message GetRangeRequest{
+  int32 from = 1;
+  int32 to = 2;
+}
+
+message GetRangeResponse{
+  repeated int32 result = 1;
+}
