@@ -1,9 +1,10 @@
 package main
 
 import (
-	"fobonacci/fibonacci"
 	"log"
 	"net/http"
+
+	"github.com/Nirss/fibonacci/fibonacci"
 
 	"github.com/gin-gonic/gin"
 )
@@ -28,7 +29,7 @@ func getFibonacci(c *gin.Context) {
 		c.String(http.StatusBadRequest, "Invalid params")
 		return
 	}
-	fibonacciArray, err := fibonacci.RecFibonacciCalculation(params.From, params.To)
+	fibonacciArray, err := fibonacci.FibonacciCalculation(params.From, params.To)
 	if err != nil {
 		c.String(http.StatusBadRequest, err.Error())
 	}

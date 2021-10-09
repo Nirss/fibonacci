@@ -16,7 +16,7 @@ func fibonacci(n int) int {
 	return fibonacci(n-1) + fibonacci(n-2)
 }
 
-func RecFibonacciCalculation(from, to int) ([]int, error) {
+func FibonacciCalculation(from, to int) ([]int, error) {
 	if from <= 0 || to <= 0 {
 		return []int{}, ErrFromOrToCannotBeZeroOrLess
 	}

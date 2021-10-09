@@ -59,7 +59,7 @@ func TestFibonacciCalculation(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			result, err := RecFibonacciCalculation(tt.From, tt.To)
+			result, err := FibonacciCalculation(tt.From, tt.To)
 			assert.EqualValues(t, tt.wantErr, err)
 			assert.EqualValues(t, tt.want, result)
 		})
@@ -68,6 +68,6 @@ func TestFibonacciCalculation(t *testing.T) {
 
 func BenchmarkFibonacciCalculation(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		RecFibonacciCalculation(1, 25)
+		FibonacciCalculation(1, 25)
 	}
 }

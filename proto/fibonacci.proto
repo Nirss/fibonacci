@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "grpcserver";
+option go_package = "github.com/Nirss/fibonacci/grpcserver";
 
 service FibonacciService {
   rpc GetRange(GetRangeRequest) returns (GetRangeResponse) {}
