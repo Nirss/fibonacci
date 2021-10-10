@@ -66,6 +66,31 @@ func TestFibonacciCalculation(t *testing.T) {
 	}
 }
 
+func TestFibonacci(t *testing.T) {
+	tests := []struct {
+		name   string
+		number int
+		want   int
+	}{
+		{
+			name:   "success",
+			number: 3,
+			want:   3,
+		},
+		{
+			name:   "negative_input",
+			number: -21,
+			want:   -21,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			result := fibonacci(tt.number)
+			assert.Equal(t, tt.want, result)
+		})
+	}
+}
+
 func BenchmarkFibonacciCalculation(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		FibonacciCalculation(1, 25)
