@@ -16,7 +16,7 @@ func main() {
 	}
 	defer conn.Close()
 	client := grpcserver.NewFibonacciServiceClient(conn)
-	response, err := client.GetRange(context.Background(), &grpcserver.GetRangeRequest{From: 2, To: 100})
+	response, err := client.GetRange(context.Background(), &grpcserver.GetRangeRequest{From: 46, To: 1000})
 	if err != nil {
 		panic(err)
 	}
