@@ -16,9 +16,9 @@ func TestFibonacciCalculation(t *testing.T) {
 	}{
 		{
 			name:    "success",
-			From:    1,
+			From:    0,
 			To:      8,
-			want:    []int{0, 1, 1, 2, 3, 5, 8, 13},
+			want:    []int{0, 1, 1, 2, 3, 5, 8, 13, 21},
 			wantErr: nil,
 		},
 		{
@@ -29,32 +29,25 @@ func TestFibonacciCalculation(t *testing.T) {
 			wantErr: ErrFromGreaterThanTo,
 		},
 		{
-			name:    "from_cannot_be_zero",
-			From:    0,
-			To:      1,
-			want:    []int{},
-			wantErr: ErrFromOrToCannotBeZeroOrLess,
-		},
-		{
 			name:    "to_cannot_be_zero",
 			From:    1,
 			To:      0,
 			want:    []int{},
-			wantErr: ErrFromOrToCannotBeZeroOrLess,
+			wantErr: ErrToCannotBeZeroOrLess,
 		},
 		{
 			name:    "from_cannot_less_than_zero",
 			From:    -1,
 			To:      2,
 			want:    []int{},
-			wantErr: ErrFromOrToCannotBeZeroOrLess,
+			wantErr: ErrFromCannotBeLessThanZero,
 		},
 		{
 			name:    "to_cannot_less_than_zero",
 			From:    2,
 			To:      -2,
 			want:    []int{},
-			wantErr: ErrFromOrToCannotBeZeroOrLess,
+			wantErr: ErrToCannotBeZeroOrLess,
 		},
 	}
 	for _, tt := range tests {
@@ -75,7 +68,7 @@ func TestFibonacci(t *testing.T) {
 		{
 			name:   "success",
 			number: 3,
-			want:   3,
+			want:   2,
 		},
 		{
 			name:   "negative_input",

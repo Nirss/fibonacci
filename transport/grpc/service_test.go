@@ -26,17 +26,35 @@ func Test_GetRange(t *testing.T) {
 				From: 2,
 				To:   10,
 			},
-			wantBody: []int32{1, 1, 2, 3, 5, 8, 13, 21, 34},
+			wantBody: []int32{1, 2, 3, 5, 8, 13, 21, 34, 55},
 			err:      nil,
 		},
 		{
-			name: "invalid_fibonacci_params",
+			name: "from_cannot_less_than_zero",
 			request: &grpcserver.GetRangeRequest{
 				From: -2,
 				To:   10,
 			},
 			wantBody: []int32{},
-			err:      fibonacci.ErrFromOrToCannotBeZeroOrLess,
+			err:      fibonacci.ErrFromCannotBeLessThanZero,
+		},
+		{
+			name: "to_cannot_be_zero",
+			request: &grpcserver.GetRangeRequest{
+				From: 2,
+				To:   0,
+			},
+			wantBody: []int32{},
+			err:      fibonacci.ErrToCannotBeZeroOrLess,
+		},
+		{
+			name: "to_cannot_less_than_zero",
+			request: &grpcserver.GetRangeRequest{
+				From: 2,
+				To:   -2,
+			},
+			wantBody: []int32{},
+			err:      fibonacci.ErrToCannotBeZeroOrLess,
 		},
 	}
 

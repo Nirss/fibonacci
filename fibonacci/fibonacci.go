@@ -5,8 +5,9 @@ import (
 )
 
 var (
-	ErrFromOrToCannotBeZeroOrLess = errors.New("numbers from or to cannot be zero or less")
-	ErrFromGreaterThanTo          = errors.New("from is greater than to")
+	ErrToCannotBeZeroOrLess     = errors.New("numbers to cannot be zero or less")
+	ErrFromCannotBeLessThanZero = errors.New("numbers from cannot be less than zero")
+	ErrFromGreaterThanTo        = errors.New("from is greater than to")
 )
 
 func fibonacci(n int) int {
@@ -17,15 +18,18 @@ func fibonacci(n int) int {
 }
 
 func FibonacciCalculation(from, to int) ([]int, error) {
-	if from <= 0 || to <= 0 {
-		return []int{}, ErrFromOrToCannotBeZeroOrLess
+	if from < 0 {
+		return []int{}, ErrFromCannotBeLessThanZero
+	}
+	if to <= 0 {
+		return []int{}, ErrToCannotBeZeroOrLess
 	}
 	if to < from {
 		return []int{}, ErrFromGreaterThanTo
 	}
 	var length = to - from + 1
 	var result = make([]int, 0, length)
-	result = append(result, fibonacci(from-1), fibonacci(from))
+	result = append(result, fibonacci(from), fibonacci(from+1))
 	for i := 2; i < length; i++ {
 		result = append(result, result[i-2]+result[i-1])
 	}

@@ -20,13 +20,25 @@ func Test_Router(t *testing.T) {
 		{
 			name:       "success",
 			url:        "/fibonacci?from=2&to=6",
-			wantBody:   "[1,1,2,3,5]",
+			wantBody:   "[1,2,3,5,8]",
 			wantStatus: http.StatusOK,
 		},
 		{
-			name:       "invalid_fibonacci_params",
+			name:       "invalid_from_fibonacci_params",
 			url:        "/fibonacci?from=-2&to=6",
-			wantBody:   "numbers from or to cannot be zero or less",
+			wantBody:   "numbers from cannot be less than zero",
+			wantStatus: http.StatusBadRequest,
+		},
+		{
+			name:       "to_cannot_be_zero",
+			url:        "/fibonacci?from=2&to=0",
+			wantBody:   "numbers to cannot be zero or less",
+			wantStatus: http.StatusBadRequest,
+		},
+		{
+			name:       "to_cannot_less_than_zero",
+			url:        "/fibonacci?from=2&to=-1",
+			wantBody:   "numbers to cannot be zero or less",
 			wantStatus: http.StatusBadRequest,
 		},
 		{
